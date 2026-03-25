@@ -1,0 +1,201 @@
+id,from,subject,body,expected_priority
+1,cto@clientcorp.com,Production database is down,"Our production database crashed 20 minutes ago. All users are affected and we are losing revenue every minute. Please fix this immediately.",CRITICAL
+2,devops@company.com,Security breach detected,"We have detected unauthorized access to our servers. Customer data may be compromised. Need immediate action.",CRITICAL
+3,alerts@monitor.com,Website completely offline,"All services are unreachable. 5000 users cannot login. We are losing thousands per minute. Emergency response needed.",CRITICAL
+4,ceo@bigclient.com,Everything has stopped working,"Our entire platform has gone down. This is completely unacceptable. Fix this in the next 30 minutes or we cancel the contract.",CRITICAL
+5,support@bank.com,Suspicious activity on accounts,"Multiple accounts have been accessed without authorization. Possible data theft. This needs to be contained immediately.",CRITICAL
+6,ops@startup.com,API completely broken,"None of our API endpoints are responding. All integrations have failed. Our clients are screaming. Need resolution NOW.",CRITICAL
+7,infra@tech.com,Server room on fire,"The server room has triggered a fire alarm. All systems are going offline. We need emergency shutdown procedures now.",CRITICAL
+8,admin@hospital.com,Patient data system failure,"Our patient records system has crashed. Doctors cannot access critical medical histories. This is a life safety issue.",CRITICAL
+9,security@corp.com,Ransomware attack in progress,"We have detected ransomware encrypting our files right now. All staff have been locked out. Need incident response team immediately.",CRITICAL
+10,cto@fintech.com,Payment processing down,"All payment transactions are failing. Customers cannot complete purchases. We are losing $50000 per hour. Fix immediately.",CRITICAL
+11,ops@ecommerce.com,Checkout system crashed,"Our entire checkout flow is broken. No orders can be placed. Black Friday sale is live and nothing works. Emergency!",CRITICAL
+12,devops@saas.com,Database corruption detected,"We have found corrupted records in our main database. Data integrity is at risk. Need DBA on call immediately.",CRITICAL
+13,noc@telecom.com,Network backbone failure,"Our core network switch has failed. Thousands of customers are without service. Escalate to NOC level 3 now.",CRITICAL
+14,alerts@cloud.com,Cloud infrastructure outage,"All instances in us-east-1 are unreachable. Entire production environment is down. Customers are affected globally.",CRITICAL
+15,security@startup.com,Admin credentials leaked,"Our admin login credentials were posted publicly on a forum. Unauthorized logins are happening right now. Lock everything down.",CRITICAL
+16,cto@logistics.com,GPS tracking system offline,"Our entire fleet tracking system has gone dark. 200 trucks are untracked. This is a safety and legal emergency.",CRITICAL
+17,it@university.com,Exam portal crashed during finals,"The online exam system has crashed mid exam for 3000 students. This is catastrophic. Need it restored in 10 minutes.",CRITICAL
+18,ops@banking.com,ATM network completely down,"All 500 ATMs in our network are offline. Customers cannot withdraw cash. Media is already calling. Fix this now.",CRITICAL
+19,devops@media.com,Live streaming platform down,"Our live streaming service has crashed during a major event with 100000 viewers. Revenue and reputation at stake.",CRITICAL
+20,cto@healthtech.com,Medical device integration failure,"Our software that connects to ICU devices has stopped responding. Patient monitoring is affected. This is critical.",CRITICAL
+21,angry.user@gmail.com,I want my money back now,"I have been trying to contact support for 5 days with no response. Your product destroyed my data and I want a full refund or I will take legal action.",HIGH
+22,client@business.com,Final warning before legal action,"Your payment of $5000 is now 30 days overdue. If not paid within 48 hours we will escalate to our legal team.",HIGH
+23,customer@email.com,Extremely disappointed with service,"Your team has been completely unresponsive for a week. I have lost important files because of your software. I demand a resolution today.",HIGH
+24,manager@corp.com,Client threatening to leave,"Our biggest client called me furious today. They are extremely unhappy with the repeated delays and want answers immediately.",HIGH
+25,user@gmail.com,This is completely unacceptable,"I paid for a premium service and have received nothing but problems. Three tickets opened and zero responses. Fix this or I leave.",HIGH
+26,procurement@firm.com,Invoice 3 months overdue,"We have sent 4 reminders about invoice INV-992 for $8200. This is your final notice before we involve collections.",HIGH
+27,vp@enterprise.com,Contract renewal at risk,"Our contract with the client expires in 3 days and they are not happy. If we do not resolve their issues we lose a $500k account.",HIGH
+28,coo@company.com,Employee data exposed,"An internal spreadsheet with employee salaries and personal information was accidentally shared publicly. HR and legal need to act now.",HIGH
+29,lawyer@legalfirm.com,Cease and desist notice,"You are hereby notified to immediately stop using our trademarked content. Failure to comply will result in legal proceedings.",HIGH
+30,user@customer.com,Billing error charged twice,"I was charged twice for my subscription this month. I want an immediate refund and an explanation for this error.",HIGH
+31,client@agency.com,Campaign launch failed,"The marketing campaign we paid $20000 for launched with broken links and wrong images. This is embarrassing. We need this fixed today.",HIGH
+32,cfo@company.com,Audit findings require action,"Our external audit has flagged serious compliance issues. Regulators have been notified. We need to respond within 24 hours.",HIGH
+33,hr@corp.com,Harassment complaint filed,"A formal harassment complaint has been filed against a senior manager. Legal and HR need to convene immediately.",HIGH
+34,user@email.com,Account hacked need help,"Someone has taken over my account and changed my email and password. I cannot log in and they are making purchases with my card.",HIGH
+35,ops@retail.com,Major shipment lost,"A shipment worth $30000 has gone missing in transit. The client is furious and threatening to cancel all future orders.",HIGH
+36,finance@startup.com,Payroll processing failed,"Payroll did not process correctly this month. 150 employees have not been paid. This needs to be fixed before end of day.",HIGH
+37,partner@vendor.com,SLA breach notification,"You have breached your SLA for the third consecutive month. We are initiating penalty clauses and reviewing the partnership.",HIGH
+38,customer@shop.com,Wrong item delivered again,"This is the second time I received the wrong order. I am done waiting. I want a refund and I am filing a complaint with consumer protection.",HIGH
+39,director@ngo.com,Grant funding at risk,"Our grant renewal application has a critical error. If not corrected by tomorrow we lose $200000 in funding.",HIGH
+40,ceo@smallbiz.com,Negative press coverage,"A journalist is publishing a negative story about our company tomorrow morning. We need PR and legal on a call tonight.",HIGH
+41,sarah.jones@partner.com,Can we find a time to connect,"Hi hope you are doing well. I wanted to explore a potential partnership. Would you have 30 minutes sometime this week?",MEDIUM
+42,hr@company.com,Please submit your timesheet,"Friendly reminder to all staff to submit timesheets by end of Friday. Reach out to HR if you have questions.",MEDIUM
+43,boss@company.com,Quick status check on the project,"Hey can you give me a brief update on where things stand? Nothing urgent just want to stay informed before the meeting.",MEDIUM
+44,colleague@work.com,Small question about the report,"When you get a chance could you explain the numbers in section 3? I want to make sure I am reading it correctly.",MEDIUM
+45,pm@agency.com,Feedback needed on the proposal,"We have put together a draft proposal for your review. Please let us know your thoughts when you get a chance.",MEDIUM
+46,recruiter@jobs.com,Opportunity I thought you might like,"Hi I came across your profile and think you could be a great fit for a role we are hiring for. Would love to chat.",MEDIUM
+47,vendor@supplier.com,Quotation for your review,"Please find attached our updated quotation for the services you requested. Let us know if you need any changes.",MEDIUM
+48,designer@agency.com,Draft designs ready for review,"Hi the first draft of the website designs are ready. Would love your feedback before we move to the next phase.",MEDIUM
+49,accountant@firm.com,Documents needed for tax filing,"To complete your tax filing we need your Q3 bank statements and expense reports. Please send them by next Wednesday.",MEDIUM
+50,colleague@team.com,Reschedule our sync?,"Hey something came up. Can we move our Friday sync to Monday instead? Let me know what works for you.",MEDIUM
+51,manager@dept.com,Performance review next week,"Just a heads up that your annual performance review is scheduled for next Thursday at 2pm. Please prepare your self assessment.",MEDIUM
+52,partner@collab.com,Introduction and collaboration idea,"Hello I am reaching out because I think there is a great opportunity for us to work together on an upcoming project.",MEDIUM
+53,ops@company.com,Office supplies order needed,"We are running low on printer paper and coffee pods. Can someone place an order before the end of the week?",MEDIUM
+54,it@office.com,Laptop replacement request,"My work laptop is running very slowly and crashing occasionally. Can I submit a request for a replacement or repair?",MEDIUM
+55,finance@dept.com,Budget approval needed,"The Q4 budget proposal is ready for your review and approval. Please sign off by Thursday so we can proceed.",MEDIUM
+56,legal@company.com,Contract review requested,"We have received a new vendor contract that needs legal review before signing. Can your team take a look this week?",MEDIUM
+57,marketing@team.com,Content calendar for next month,"Hi I have drafted the content calendar for next month. Can you review it and let me know if any changes are needed?",MEDIUM
+58,dev@team.com,Code review requested,"I have opened a pull request for the new feature. Would appreciate your review when you get a chance. No rush.",MEDIUM
+59,sales@company.com,New lead needs follow up,"We have a warm lead from the conference last week. Can someone from the team reach out to them this week?",MEDIUM
+60,admin@office.com,Visitor parking arrangements,"We have clients visiting on Wednesday. Can you arrange visitor parking passes and inform reception in advance?",MEDIUM
+61,newsletter@techdigest.com,Your weekly tech roundup is here,"This week top AI tools new framework releases and a founder interview. Hope you enjoy this edition. Unsubscribe anytime.",LOW
+62,deals@shopping.com,Huge discounts this weekend only,"Do not miss our biggest sale of the year. Everything is half price this Saturday and Sunday. Use code SAVE50.",LOW
+63,updates@app.com,Monthly product highlights,"Here is your monthly roundup of new features tips from the community and upcoming events. Thanks for being with us.",LOW
+64,noreply@social.com,You have new followers this week,"Great news you gained 47 new followers this week. See who is following you and keep growing your network.",LOW
+65,blog@medium.com,New article you might enjoy,"We published a new post on productivity habits for developers. Thought you might find it interesting. Give it a read.",LOW
+66,events@community.com,Upcoming webinar next Thursday,"Just a heads up we are hosting a free webinar on machine learning basics next Thursday at 6pm. Register below.",LOW
+67,promo@store.com,Flash sale ends tonight,"Last chance to grab our flash sale deals. Everything must go. Shop now before midnight and save big.",LOW
+68,info@platform.com,Your account summary for October,"Here is a summary of your activity this month including logins feature usage and storage consumption.",LOW
+69,hello@startup.com,We just launched something new,"Excited to share that we have just launched our new mobile app. Download it today and let us know what you think.",LOW
+70,digest@news.com,Top stories this morning,"Good morning here are the top 5 stories you need to know today. From tech to business we have you covered.",LOW
+71,tips@productivity.com,5 tips to improve your workflow,"In this week's edition we share five simple habits that can dramatically improve your daily productivity.",LOW
+72,hello@newsletter.com,Welcome to our community,"Thank you for subscribing. We are thrilled to have you here. Expect weekly insights straight to your inbox.",LOW
+73,offers@travel.com,Exclusive travel deals just for you,"Book your next vacation at unbeatable prices. Flights hotels and packages all discounted for this week only.",LOW
+74,update@software.com,Version 3.2 is now available,"We have released a new version with bug fixes and performance improvements. Update now to get the latest features.",LOW
+75,social@network.com,Someone liked your post,"Your recent post received 23 likes and 5 comments. Log in to see what people are saying.",LOW
+76,reminder@gym.com,Do not forget your workout today,"Hey you have not logged a workout this week. Get back on track today. Your fitness goals are waiting.",LOW
+77,hello@podcast.com,New episode just dropped,"Our latest episode is live. This week we talk about the future of remote work and how to thrive in it.",LOW
+78,marketing@brand.com,New collection just arrived,"Our fall winter collection is here. Shop the latest styles before they sell out. Free shipping on orders over $50.",LOW
+79,info@finance.com,Your investment portfolio update,"Here is your monthly portfolio summary. Markets have been volatile but your long term outlook remains positive.",LOW
+80,team@community.com,Vote for the best project,"The community voting for our annual hackathon is now open. Cast your vote and support your favorite team.",LOW
+81,cto@enterprise.com,All services restored after outage,"Just to confirm all systems are back online after last night's outage. Root cause analysis will follow tomorrow.",CRITICAL
+82,security@company.com,Zero day vulnerability found,"A zero day exploit has been found in our authentication system. Attackers can bypass login. Patch needed immediately.",CRITICAL
+83,ops@platform.com,Load balancer failure,"Our load balancer has failed causing all traffic to hit a single server. System is about to collapse under load.",CRITICAL
+84,cto@app.com,Mobile app crashing for all users,"Our iOS and Android apps are crashing on launch for 100% of users after the latest update. Rollback immediately.",CRITICAL
+85,devops@startup.com,CI CD pipeline completely broken,"All deployments are failing. We cannot push any fixes to production. The pipeline has been down for 3 hours.",CRITICAL
+86,admin@data.com,Backup system failure,"Our automated backups have been silently failing for 2 weeks. We have no recent backups. This is a disaster risk.",CRITICAL
+87,cto@retail.com,Inventory system corrupted,"Our inventory database shows negative stock levels across all products. Orders are being placed for items we do not have.",CRITICAL
+88,ops@airline.com,Flight booking system down,"Our reservation system has crashed. Passengers cannot check in online. Flights are departing in 2 hours.",CRITICAL
+89,security@bank.com,DDoS attack ongoing,"We are under a massive DDoS attack. Our website and APIs are completely unreachable. Activate incident response now.",CRITICAL
+90,cto@gaming.com,Game servers offline during launch,"Our game servers crashed 30 minutes into the official launch. 500000 players cannot connect. Fix this now.",CRITICAL
+91,customer@angry.com,You ruined my event,"I hired your catering service for my wedding and you cancelled last minute without any notice. You have ruined the most important day of my life. I want full compensation.",HIGH
+92,user@frustrated.com,Still waiting after 3 weeks,"I submitted a support ticket 3 weeks ago and have heard nothing. This level of service is absolutely shameful.",HIGH
+93,buyer@shop.com,Product damaged on arrival,"The laptop I ordered arrived with a cracked screen and dented casing. This was clearly mishandled. I want a replacement immediately.",HIGH
+94,client@firm.com,Project deadline missed again,"This is the third deadline your team has missed. Our launch is now delayed and we are losing money. Escalate this immediately.",HIGH
+95,partner@biz.com,Unauthorized use of our brand,"We have discovered that you are using our logo and brand name without permission on your website. Remove it immediately.",HIGH
+96,user@premium.com,Subscription charged but access denied,"I was charged $299 for the annual plan but my account still shows free tier. I cannot access any premium features.",HIGH
+97,client@marketing.com,Ad campaign targeting wrong audience,"Our paid ad campaign has been running for a week targeting the completely wrong demographic. We have wasted $15000.",HIGH
+98,customer@bank.com,Fraudulent transactions on my account,"There are 5 transactions on my account that I did not make totaling $1200. I need these reversed and my card blocked now.",HIGH
+99,tenant@property.com,No heat in the building for 4 days,"It is winter and there has been no heating in our building for 4 days. Residents include elderly people and children. Fix this today.",HIGH
+100,employee@corp.com,Wrongful termination notice received,"I received a termination letter today despite having a clean record and no prior warnings. I am consulting a lawyer.",HIGH
+101,john.smith@company.com,Lunch plans for Friday,"Hey a few of us are going out for lunch on Friday. Would you like to join us? We are thinking Italian.",MEDIUM
+102,team@office.com,Team outing next month,"We are planning a team outing next month. Please fill out the poll to vote for your preferred activity and date.",MEDIUM
+103,manager@work.com,Training session next week,"There is a mandatory training session on the new compliance procedures next Tuesday at 10am. Please confirm attendance.",MEDIUM
+104,colleague@dept.com,Can you cover my shift,"Hey I have a doctor appointment on Thursday morning. Is there any chance you could cover the 9am standup for me?",MEDIUM
+105,vendor@tech.com,Product demo this week,"We would love to show you our new platform features. Are you available for a 45 minute demo this Thursday or Friday?",MEDIUM
+106,hr@company.com,Open enrollment reminder,"Open enrollment for health benefits closes this Friday. Log into the HR portal to review and update your selections.",MEDIUM
+107,boss@team.com,Thoughts on the new process,"I wanted to get your feedback on the new workflow we introduced last week. What is working and what needs improvement?",MEDIUM
+108,client@project.com,Milestone review tomorrow,"Just a reminder that we have the milestone review call tomorrow at 3pm. Please have your progress update ready.",MEDIUM
+109,colleague@remote.com,Coffee chat this week,"Hi I am new to the team and trying to meet everyone. Would you be up for a quick virtual coffee chat this week?",MEDIUM
+110,admin@company.com,Parking policy update,"Please note that the parking policy has been updated. All staff must register their vehicles by end of this month.",MEDIUM
+111,ops@office.com,Fire drill this Thursday,"We will be conducting a fire drill this Thursday at 11am. Please ensure all team members are aware and participate.",MEDIUM
+112,finance@team.com,Expense report reminder,"Please submit your expense reports for last month by this Wednesday. Late submissions may delay reimbursement.",MEDIUM
+113,it@support.com,Scheduled maintenance this weekend,"We will be performing scheduled maintenance on Sunday from 2am to 6am. Some services may be temporarily unavailable.",MEDIUM
+114,marketing@company.com,Brand guidelines updated,"The brand guidelines have been updated with new colors and font specifications. Please review before your next project.",MEDIUM
+115,pm@project.com,Kickoff meeting next Monday,"Our project kickoff meeting is scheduled for next Monday at 10am. Please come prepared with your initial estimates.",MEDIUM
+116,hr@hiring.com,Interview scheduled for Thursday,"Your interview with the candidate is confirmed for Thursday at 2pm. The interview brief has been shared with you.",MEDIUM
+117,colleague@team.com,Book recommendation,"Hey I just finished an amazing book on system design. Thought you might enjoy it given your interest in architecture.",MEDIUM
+118,manager@dept.com,New team member joining Monday,"We have a new developer joining the team on Monday. Please make them feel welcome and help with onboarding.",MEDIUM
+119,ops@facility.com,Conference room booking,"Just a reminder that conference room B is booked for your team meeting on Wednesday from 2pm to 4pm.",MEDIUM
+120,admin@hr.com,Policy document for review,"Please review the attached updated leave policy document and confirm you have read and understood the changes.",MEDIUM
+121,promo@fashion.com,New arrivals just landed,"Check out our latest collection. Fresh styles for every occasion. Free delivery on orders over $40 this week only.",LOW
+122,info@streaming.com,New shows added this week,"We have added 15 new titles to our library this week including the new season of your favorite show.",LOW
+123,hello@fintech.com,Your cashback for this month,"Great news you earned $12.50 in cashback this month. Keep using your card to earn more rewards.",LOW
+124,digest@industry.com,Industry news this week,"Here are the top stories from the industry this week. From funding rounds to product launches stay in the know.",LOW
+125,update@game.com,New level pack available,"A new level pack has been added to the game. 20 new challenges await you. Download the update and start playing.",LOW
+126,reminder@reading.com,You have unfinished books,"You have 3 books in progress on your reading list. Pick up where you left off and keep your streak going.",LOW
+127,hello@rewards.com,You have points expiring soon,"Just a heads up that 500 of your reward points will expire at the end of this month. Use them before they are gone.",LOW
+128,info@weather.com,Weekend weather forecast,"Sunny skies expected this weekend with temperatures in the mid 70s. Great time to get outside and enjoy the weather.",LOW
+129,team@nonprofit.com,Volunteer opportunity this Saturday,"We are hosting a community cleanup this Saturday morning. If you would like to volunteer please sign up below.",LOW
+130,hello@recipe.com,Recipe of the week,"This week we are featuring a delicious one pot pasta recipe that takes only 20 minutes. Check it out.",LOW
+131,noc@network.com,Critical router failure in data center,"Our core router in the primary data center has failed. Full network partition is occurring. All hands on deck.",CRITICAL
+132,cto@payments.com,Fraud detection system offline,"Our fraud detection system has gone offline. Fraudulent transactions are going through unchecked. Stop all payments now.",CRITICAL
+133,ops@delivery.com,Autonomous delivery system crash,"Our entire autonomous delivery fleet has lost connectivity. 500 active deliveries are stranded. Emergency protocols now.",CRITICAL
+134,admin@school.com,School management system hacked,"Our student information system has been compromised. Grades and personal data of 10000 students are at risk.",CRITICAL
+135,security@tech.com,SSL certificate expired in production,"Our SSL certificate expired an hour ago. All HTTPS traffic is failing. Users are getting security warnings.",CRITICAL
+136,cto@startup.com,Entire engineering team locked out,"A permissions error has locked out all engineers from the codebase and deployment tools. We cannot fix anything.",CRITICAL
+137,ops@hospital.com,Pharmacy dispensing system down,"Our automated pharmacy system has crashed. Nurses are dispensing medication manually with high error risk.",CRITICAL
+138,devops@corp.com,Production deployment went wrong,"The latest deployment has broken the login system. No users can authenticate. We need to rollback immediately.",CRITICAL
+139,alerts@iot.com,IoT sensor network failure,"All 2000 sensors in our smart building network have gone offline. HVAC fire suppression and access control affected.",CRITICAL
+140,cto@edtech.com,Online testing platform crashed,"Our platform crashed mid exam for 8000 students taking standardized tests today. Legal liability is significant.",CRITICAL
+141,supplier@parts.com,Price increase notice effective next month,"Please be advised that due to rising material costs we will be increasing our prices by 12% starting next month.",HIGH
+142,client@consulting.com,Deliverable quality not acceptable,"The report you submitted last week does not meet the standards we agreed on. We need a revised version by Friday.",HIGH
+143,partner@dev.com,API breaking changes without notice,"Your latest API update broke our entire integration without any prior notice. We lost a full day of engineering work.",HIGH
+144,customer@telco.com,Internet down for 5 days,"My business internet has been down for 5 days. I have lost thousands in revenue. I want compensation and a fix today.",HIGH
+145,user@platform.com,Account banned without reason,"My account was banned without any explanation or warning. I have done nothing wrong. I demand a review and reinstatement.",HIGH
+146,client@design.com,Completely wrong design delivered,"The designs you delivered look nothing like the brief we provided. We are extremely disappointed and want a full redo.",HIGH
+147,hr@employee.com,Discrimination complaint,"I am formally reporting discriminatory behavior from my direct manager. I have documented evidence and want HR to act.",HIGH
+148,buyer@ecom.com,Package lost for 3 weeks,"My order has been stuck in transit for 3 weeks with no updates. I paid $150 and have received nothing. Refund me now.",HIGH
+149,cfo@startup.com,Investor pulling out last minute,"Our lead investor has sent a message saying they are reconsidering the term sheet. We need an emergency board call today.",HIGH
+150,ops@logistics.com,Wrong cargo loaded on flight,"A customs inspection revealed that the wrong cargo was loaded on an international flight. This is a legal violation.",HIGH
+151,hello@colleague.com,Sharing an interesting article,"I came across this article about microservices architecture and thought you might find it useful. Worth a read.",MEDIUM
+152,admin@team.com,Updated org chart,"The updated organizational chart reflecting recent team changes has been shared in the company drive. Please review.",MEDIUM
+153,manager@company.com,Checking in on your goals,"Hi just wanted to check in and see how you are progressing with your quarterly goals. Happy to chat if needed.",MEDIUM
+154,colleague@office.com,Birthday celebration for Sarah,"We are collecting for a birthday gift for Sarah. If you would like to contribute please bring $10 by Thursday.",MEDIUM
+155,vendor@cloud.com,Service plan renewal coming up,"Your current service plan renews in 30 days. We would love to discuss your needs and explore upgraded options.",MEDIUM
+156,pm@team.com,Sprint planning this Monday,"Just a reminder that sprint planning is this Monday at 9am. Please review the backlog and come prepared.",MEDIUM
+157,hr@benefits.com,New benefits package overview,"We are excited to share details about our updated benefits package. Please review the document and ask any questions.",MEDIUM
+158,it@helpdesk.com,Software license renewal needed,"Several software licenses are expiring next month. Please confirm which tools your team still needs so we can renew.",MEDIUM
+159,manager@sales.com,Q3 targets review,"I would like to schedule a call to review Q3 sales targets and discuss strategy for the final push. Are you free Thursday?",MEDIUM
+160,colleague@startup.com,Co-working space next week,"A few of us are planning to work from the downtown co-working space next Tuesday. Would you like to join us?",MEDIUM
+161,deals@electronics.com,Today only laptop deals,"Shop our one day sale on laptops and accessories. Save up to 40% on top brands. Offer ends at midnight.",LOW
+162,hello@meditation.com,Your daily mindfulness reminder,"Take a moment today to breathe and reset. Your 5 minute guided meditation is ready whenever you need it.",LOW
+163,update@fitness.com,Weekly workout summary,"You completed 4 workouts this week. Great job staying consistent. Here is your progress summary for the week.",LOW
+164,info@library.com,New books added to the collection,"We have added over 200 new titles to our digital library this month. Browse the new arrivals and add to your list.",LOW
+165,hello@language.com,Daily language lesson ready,"Your Spanish lesson for today is ready. Practice for just 10 minutes a day and see amazing results.",LOW
+166,team@forum.com,New replies in your thread,"Someone replied to your post in the community forum. Log in to continue the conversation.",LOW
+167,promo@food.com,Free delivery this weekend,"Order from any restaurant this weekend and get free delivery. Use code FREEDELIVERY at checkout.",LOW
+168,info@museum.com,Upcoming exhibition next month,"We are thrilled to announce a new photography exhibition opening next month. Free entry on opening night.",LOW
+169,hello@finance.com,Monthly spending insights,"Your spending summary for October is ready. You spent less than last month. Keep up the great budgeting.",LOW
+170,updates@music.com,New playlist curated for you,"Based on your listening history we have created a new playlist just for you. Give it a listen and let us know.",LOW
+171,cto@cloud.com,Kubernetes cluster unresponsive,"Our entire Kubernetes cluster has stopped scheduling pods. All microservices are degrading. Engineers needed now.",CRITICAL
+172,ops@fintech.com,Core banking software failure,"Our core banking system has thrown a critical exception and is in read only mode. No transactions can be processed.",CRITICAL
+173,security@enterprise.com,Insider threat detected,"Our DLP system has flagged a large data exfiltration attempt from an internal account. Suspend the user immediately.",CRITICAL
+174,devops@telecom.com,SMS gateway completely down,"Our SMS gateway is down. OTP messages are not being delivered. All users requiring two factor auth are locked out.",CRITICAL
+175,cto@logistics.com,Route optimization system failure,"Our AI routing engine has crashed. Drivers have no routes. 1000 deliveries scheduled for today are at risk.",CRITICAL
+176,ops@energy.com,SCADA system breach,"Our industrial control system has been accessed by an unauthorized party. Critical infrastructure is at risk.",CRITICAL
+177,admin@datacenter.com,Cooling system failure in server room,"Temperature in the server room is rising rapidly. Cooling units have failed. Hardware damage imminent in 15 minutes.",CRITICAL
+178,cto@media.com,CDN provider major outage,"Our CDN is completely down. Our website and app assets are not loading for users globally. Revenue halted.",CRITICAL
+179,devops@saas.com,Multi region database failover failed,"Our automated failover to the secondary region failed. We have a single point of failure with no redundancy.",CRITICAL
+180,security@startup.com,API keys exposed on GitHub,"An engineer accidentally pushed API keys to a public GitHub repo. The keys are live. Rotate everything now.",CRITICAL
+181,client@agency.com,Missing crucial project files,"All files from our shared drive folder have disappeared. A month of work is gone. We need them restored today.",HIGH
+182,customer@isp.com,Business line down for 2 days,"Our business phone lines have been down for 2 days. We are missing client calls and losing business every hour.",HIGH
+183,partner@integration.com,Data sync has been failing silently,"We just discovered that our data sync with your platform has been failing for 2 weeks without any alerts. Data is out of sync.",HIGH
+184,user@subscription.com,Cannot cancel subscription,"I have tried to cancel my subscription 4 times through your app and website but keep getting errors. I am being charged still.",HIGH
+185,client@software.com,Critical bug in production release,"The version you shipped last week has a bug that corrupts user data under specific conditions. We need a hotfix now.",HIGH
+186,employee@hr.com,Payslip shows incorrect deductions,"My payslip this month shows deductions I was not informed about. The total is significantly lower than expected.",HIGH
+187,user@banking.com,Locked out of account before trip,"I am traveling internationally tomorrow and have been locked out of my bank account. I need access urgently.",HIGH
+188,partner@api.com,Deprecated endpoint causing failures,"You deprecated an endpoint without notice and our integration broke completely. We need the old endpoint restored.",HIGH
+189,ops@retail.com,Supplier sent completely wrong stock,"We received 500 units of the wrong product. Our shelves are empty and customers are complaining. Fix this today.",HIGH
+190,founder@startup.com,Term sheet has a major legal issue,"Our lawyer found a clause in the term sheet that could give investors majority control unexpectedly. Call needed today.",HIGH
+191,colleague@team.com,Question about the deployment process,"Hey I am a bit confused about our current deployment workflow. Could you walk me through it when you have time?",MEDIUM
+192,manager@corp.com,Feedback on last week's presentation,"I wanted to share some thoughts on your presentation last week. Overall great job with a few areas to polish.",MEDIUM
+193,hr@onboarding.com,Onboarding checklist for new hire,"Please complete the onboarding checklist for the new team member joining next week. It should take about an hour.",MEDIUM
+194,vendor@maintenance.com,Scheduled maintenance visit next week,"Our technician will visit your office next Tuesday between 9am and 12pm for the annual equipment maintenance check.",MEDIUM
+195,colleague@remote.com,Async update on the feature,"Hey just dropping an async update on the feature I am working on. Making good progress and on track for Friday.",MEDIUM
+196,admin@office.com,New coffee machine in the kitchen,"Just letting everyone know that a new coffee machine has been installed in the kitchen. Instruction card is on the counter.",LOW
+197,hello@trivia.com,Weekly trivia question is here,"Can you answer this week's trivia question? The first person to reply correctly wins a $10 gift card.",LOW
+198,info@airline.com,Your flight summary for October,"You flew 3 flights last month and earned 4500 miles. Your total balance is now 22000 miles. Happy travels.",LOW
+199,updates@photo.com,Your photo memories from 3 years ago,"We found some photos from this day 3 years ago. Take a look and relive the memories.",LOW
+200,hello@community.com,Thank you for being a member,"We just hit 10000 members in our community. Thank you for being part of this journey. Here is a small gift for you.",LOW
