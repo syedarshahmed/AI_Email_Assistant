@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Email Assistant</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h2>📧 AI Email Assistant</h2>
+
+    <label>Subject</label>
+    <input type="text" id="subject">
+
+    <label>Email Body</label>
+    <textarea id="body" rows="5"></textarea>
+
+    <button id="analyzeBtn" onclick="analyzeEmail()">Analyze Email</button>
+
+    <div class="result" id="result">No result yet</div>
+
+    <div class="history-header">
+        <h3>📜 History</h3>
+        <button class="clear-btn" onclick="clearHistory()">🗑 Clear</button>
+    </div>
+
+    <div id="history"></div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
