@@ -1,139 +1,144 @@
 # 📧 AI Email Assistant
 
-An intelligent email processing system that automatically classifies emails and determines their priority using a hybrid approach combining Machine Learning and rule-based techniques.
+An intelligent full-stack application that classifies email priority and generates smart replies using Machine Learning and LLMs.
 
 ---
 
-## 🚀 Overview
+## 🚀 Features
 
-Managing emails efficiently is a common challenge. This project provides an AI-powered solution that:
-
-- Categorizes emails into meaningful classes  
-- Detects the urgency of emails  
-- Combines statistical learning with logical reasoning for better accuracy  
-
----
-
-## ✨ Features
-
-### 📂 Email Classification
-- Classifies emails into:
-  - Work  
-  - Spam  
-  - Personal  
-- Built using:
-  - TF-IDF vectorization  
-  - Logistic Regression  
+- 🧠 Email Priority Classification (ML + Rule-based Hybrid)
+- 🤖 AI-generated Smart Replies (LLM integration via Groq)
+- 🎨 Clean and responsive UI
+- 📜 Email History (stored locally)
+- 📋 Copy-to-clipboard replies
+- ⚡ Real-time API interaction with FastAPI backend
 
 ---
 
-### ⚡ Priority Detection (Hybrid System)
+## 🧱 Tech Stack
 
-#### 🔹 Rule-Based Analysis
-- Detects urgency using:
-  - Keywords (urgent, ASAP, deadline)  
-  - Punctuation (!)  
-  - Text patterns (ALL CAPS)  
+### Backend
+- FastAPI
+- Scikit-learn
+- Python
 
-#### 🔹 Machine Learning Model
-- Learns contextual patterns from data  
-- Uses TF-IDF + Logistic Regression  
+### Frontend
+- HTML
+- CSS
+- JavaScript
 
-#### 🔹 Combined Decision Logic
-- Weighted scoring system:
-  - Rule-based signals → 60%  
-  - ML predictions → 40%  
-
----
-
-## 🧠 How It Works
-
-1. Email text is provided as input  
-2. Text is preprocessed (cleaning, stopword removal)  
-3. Converted into numerical features using TF-IDF  
-4. Classification model predicts email category  
-5. Rule-based system evaluates urgency signals  
-6. ML model predicts contextual priority  
-7. Final priority is determined using a hybrid scoring mechanism  
-
----
-
-## 🛠 Tech Stack
-
-- Python  
-- Pandas  
-- scikit-learn  
-- NLTK  
+### AI / ML
+- TF-IDF Vectorization
+- Logistic Regression / Naive Bayes
+- Hybrid rule-based system
+- LLM (Groq - LLaMA 3)
 
 ---
 
 ## 📂 Project Structure
 
-ai-email-assistant/
+```
+AI Email Assistant/
 │
-├── data/
-│   ├── emails.csv
-│   ├── data_loader.py
-├   └── text_processor.py 
+├── backend/
+│   ├── app.py
+│   ├── model/
+│   ├── data/
+│
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
 │
 ├── model/
-│   ├── classifier.py
-│   ├── predictor.py
-│   ├── rule_based.py
-│   ├── hybrid.py
-│   └── *.pkl
-│
-├── main.py
-├── .gitignore
+├── data/
 └── README.md
+```
 
 ---
 
-## 🧪 Example
+## ⚙️ Setup Instructions
 
-Input:
-URGENT: Submit the report ASAP!
+### 1️⃣ Clone the repository
 
-Output:
-Category: Work  
-Priority: HIGH 🔴
-
----
-
-## ⚙️ Setup & Installation
-
-1. Clone the repository
-git clone https://github.com/your-username/AI_Email_Assistant.git
-cd AI_Email_Assistant
-
-2. Install dependencies
-pip install pandas scikit-learn nltk
-
-3. Run the project
-python main.py
+```
+git clone https://github.com/your-username/ai-email-assistant.git
+cd ai-email-assistant
+```
 
 ---
 
-## 📈 Future Enhancements
+### 2️⃣ Install dependencies
 
-- Smart reply generation using LLMs  
-- Email summarization  
-- Gmail API integration  
-- Web-based interface (React + FastAPI)  
+```
+pip install -r requirements.txt
+```
 
 ---
 
-## 🎯 Key Highlights
+### 3️⃣ Add API Key
 
-- Hybrid AI system (ML + rule-based reasoning)  
-- Real-world problem solving  
-- Modular and scalable design  
-- Clean and maintainable codebase  
+Create a `.env` file:
+
+```
+GROQ_API_KEY=your_api_key_here
+```
+
+---
+
+### 4️⃣ Run Backend
+
+```
+uvicorn backend.app:app --reload
+```
+
+---
+
+### 5️⃣ Run Frontend
+
+Open:
+
+```
+frontend/index.html
+```
+
+---
+
+## 🧠 How It Works
+
+1. User inputs email
+2. Text is preprocessed and vectorized
+3. ML model predicts priority
+4. Rule-based system enhances prediction
+5. LLM generates smart replies
+6. Results displayed in UI
+
+---
+
+## 📊 Sample Output
+
+- Priority: CRITICAL
+- Replies:
+  - Immediate response with action steps
+  - Technical resolution acknowledgment
+  - Follow-up communication
+
+---
+
+## 🎯 Future Improvements
+
+- 🌙 Dark mode
+- ⚛️ React frontend
+- 📊 Email analytics dashboard
+- 🔐 Authentication system
+- ☁️ Deployment (Vercel / Render)
 
 ---
 
 ## 👨‍💻 Author
 
-Syed Arsh Ahmed  
+**Syed Arsh Ahmed**
 
 ---
+
+## ⭐ If you like this project, give it a star!
