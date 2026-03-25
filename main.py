@@ -4,6 +4,21 @@ from data.data_loader import load_data, prepare_data, get_features_and_labels
 from data.text_processor import preprocess_all, vectorize
 from model.classifier import train_model, evaluate_model, save_model
 from model.hybrid import hybrid_predict, print_hybrid_result
+from model.reply_generator import generate_reply, print_reply
+
+
+# function to integrate
+def full_email_analysis(subject, body):
+    email_text = subject + " " + body
+
+    # Priority
+    priority_result = hybrid_predict(subject, body)
+    priority = priority_result["final_priority"]
+
+    # Replies
+    replies = generate_reply(subject, body, priority)
+
+    return priority, replies
 
 # Steps 1-8 stay the same
 df = load_data("data/emails.csv")
@@ -16,43 +31,46 @@ evaluate_model(model, X_vectorized, y, encoder)
 save_model(model, vectorizer, encoder)
 
 # ─────────────────────────────────────
-# Test Hybrid System
+# Test Reply Generator
 # ─────────────────────────────────────
-print("\n" + "="*55)
-print("🧠 TESTING HYBRID INTELLIGENCE SYSTEM")
-print("="*55)
+print("\n" + "="*60)
+print("🚀 FULL AI EMAIL ASSISTANT SYSTEM")
+print("="*60)
+
 
 test_emails = [
     (
         "Production server is down",
-        "Our server crashed and all users are affected. Emergency fix needed immediately."
-    ),
-    (
-        "Invoice overdue final warning",
-        "Your payment of $5000 is overdue. Legal action will follow if not paid in 48 hours."
+        "Our server crashed and all users are affected. Emergency fix needed immediately.",
+        "CRITICAL"
     ),
     (
         "Can we schedule a meeting?",
-        "Hi would love to discuss the project updates. Are you free for a call this week?"
+        "Hi I would love to discuss a potential collaboration. Are you free for a call this week?",
+        "MEDIUM"
     ),
     (
-        "Flash sale this weekend only",
-        "Get 50 percent off everything this Saturday and Sunday. Do not miss out."
-    ),
-    (
-        "Hello there",
-        "Just wanted to say hi and check in with you today."
-    ),
-    (
-        "Something went wrong with our system",
-        "Users are reporting that they cannot access their accounts since this morning."
-    ),
-    (
-        "Unauthorized access attempt",
-        "We noticed someone tried to log into your account from an unknown location."
+        "Flash sale this weekend",
+        "Get 50 percent off everything this Saturday and Sunday. Do not miss out.",
+        "LOW"
     ),
 ]
 
-for subject, body in test_emails:
-    result = hybrid_predict(subject, body)
-    print_hybrid_result(result)
+for subject, body, _ in test_emails:
+
+    priority, replies = full_email_analysis(subject, body)
+
+    print("\n" + "="*55)
+    print(f"📧 Subject  : {subject}")
+    print(f"🎯 Priority : {priority}")
+    print("-" * 55)
+
+    if isinstance(replies, str):
+        print(replies)
+    else:
+        for i, r in enumerate(replies, 1):
+            print(f"{i}. {r}")
+
+    print("\nBest regards,\nTeam Support")  
+    print("="*55)
+
