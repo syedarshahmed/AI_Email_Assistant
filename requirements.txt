@@ -1,3 +1,7 @@
-pandas
+fastapi
+uvicorn
 scikit-learn
 nltk
+pandas
+groq
+python-dotenv
