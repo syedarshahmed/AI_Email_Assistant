@@ -16,6 +16,8 @@ def rule_based_priority(text):
 def hybrid_predict(subject, body, model, vectorizer, encoder):
     text = subject + " " + body
 
+    print("🔥 HYBRID RUNNING:", text)
+
     # Rule-based
     rule_pred = rule_based_priority(text)
 
