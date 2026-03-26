@@ -1,144 +1,181 @@
-# 📧 AI Email Assistant
+# MailMind — AI Email Assistant
 
-An intelligent full-stack application that classifies email priority and generates smart replies using Machine Learning and LLMs.
-
----
-
-## 🚀 Features
-
-- 🧠 Email Priority Classification (ML + Rule-based Hybrid)
-- 🤖 AI-generated Smart Replies (LLM integration via Groq)
-- 🎨 Clean and responsive UI
-- 📜 Email History (stored locally)
-- 📋 Copy-to-clipboard replies
-- ⚡ Real-time API interaction with FastAPI backend
+An intelligent email classification and smart reply generation system built with Python, Machine Learning, and LLM integration.
 
 ---
 
-## 🧱 Tech Stack
+## What It Does
 
-### Backend
-- FastAPI
-- Scikit-learn
-- Python
-
-### Frontend
-- HTML
-- CSS
-- JavaScript
-
-### AI / ML
-- TF-IDF Vectorization
-- Logistic Regression / Naive Bayes
-- Hybrid rule-based system
-- LLM (Groq - LLaMA 3)
+- **Classifies email priority** — CRITICAL, HIGH, MEDIUM, LOW
+- **Hybrid Intelligence** — combines Rule Based + ML model for accurate results
+- **Generates smart replies** — powered by Groq LLM (Llama 3)
+- **Clean web interface** — dark themed frontend with history tracking
 
 ---
 
-## 📂 Project Structure
+## Project Structure
 
 ```
 AI Email Assistant/
 │
-├── backend/
-│   ├── app.py
-│   ├── model/
-│   ├── data/
-│
-├── frontend/
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
+├── data/
+│   ├── emails.csv              # 200 email training dataset
+│   ├── data_loader.py          # loads and prepares data
+│   └── text_processor.py       # cleans and vectorizes text
 │
 ├── model/
-├── data/
-└── README.md
+│   ├── classifier.py           # trains logistic regression model
+│   ├── rule_based.py           # keyword based priority rules
+│   ├── predictor.py            # ML prediction function
+│   ├── hybrid.py               # combines rule based + ML
+│   ├── reply_generator.py      # Groq LLM reply generation
+│   ├── model.pkl               # saved trained model
+│   ├── vectorizer.pkl          # saved TF-IDF vectorizer
+│   └── encoder.pkl             # saved label encoder
+│
+├── tests/
+│   └── test_hybrid.py          # test suite for hybrid system
+│
+├── apps.py                     # FastAPI backend
+├── main.py                     # model training pipeline
+├── index.html                  # frontend UI
+├── requirements.txt            # dependencies
+├── .env                        # API keys (not committed)
+└── .gitignore
 ```
 
 ---
 
-## ⚙️ Setup Instructions
+## Tech Stack
 
-### 1️⃣ Clone the repository
+| Layer | Technology |
+|---|---|
+| Language | Python 3.14 |
+| ML Model | Logistic Regression (scikit-learn) |
+| Text Processing | TF-IDF, NLTK |
+| Hybrid System | Rule Based + ML |
+| LLM | Groq API (Llama 3) |
+| Backend | FastAPI + Uvicorn |
+| Frontend | HTML, CSS, JavaScript |
 
-```
-git clone https://github.com/your-username/ai-email-assistant.git
+---
+
+## Setup
+
+### 1. Clone the repository
+```bash
+git clone https://github.com/yourusername/ai-email-assistant.git
 cd ai-email-assistant
 ```
 
----
-
-### 2️⃣ Install dependencies
-
-```
+### 2. Install dependencies
+```bash
 pip install -r requirements.txt
 ```
 
----
+### 3. Download NLTK data
+```python
+import nltk
+import ssl
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
 
-### 3️⃣ Add API Key
-
-Create a `.env` file:
-
-```
-GROQ_API_KEY=your_api_key_here
-```
-
----
-
-### 4️⃣ Run Backend
-
-```
-uvicorn backend.app:app --reload
+nltk.download('stopwords')
+nltk.download('punkt')
+nltk.download('wordnet')
 ```
 
----
-
-### 5️⃣ Run Frontend
-
-Open:
-
+### 4. Set up environment variables
+Create a `.env` file in the root folder:
 ```
-frontend/index.html
+GROQ_API_KEY=your_groq_api_key_here
 ```
 
----
-
-## 🧠 How It Works
-
-1. User inputs email
-2. Text is preprocessed and vectorized
-3. ML model predicts priority
-4. Rule-based system enhances prediction
-5. LLM generates smart replies
-6. Results displayed in UI
+Get your free API key at [console.groq.com](https://console.groq.com)
 
 ---
 
-## 📊 Sample Output
+## Running the Project
 
-- Priority: CRITICAL
-- Replies:
-  - Immediate response with action steps
-  - Technical resolution acknowledgment
-  - Follow-up communication
+### Step 1 — Train the model
+```bash
+python3 main.py
+```
 
----
+### Step 2 — Start the backend
+```bash
+uvicorn apps:app --reload
+```
 
-## 🎯 Future Improvements
+### Step 3 — Open the frontend
+```bash
+open index.html
+```
 
-- 🌙 Dark mode
-- ⚛️ React frontend
-- 📊 Email analytics dashboard
-- 🔐 Authentication system
-- ☁️ Deployment (Vercel / Render)
-
----
-
-## 👨‍💻 Author
-
-**Syed Arsh Ahmed**
+Backend runs at: `http://127.0.0.1:8000`
 
 ---
 
-## ⭐ If you like this project, give it a star!
+## API Endpoints
+
+| Method | Endpoint | Description |
+|---|---|---|
+| GET | `/` | Health check |
+| POST | `/priority` | Returns email priority + confidence |
+| POST | `/reply` | Returns priority + generated reply |
+
+### Example Request
+```json
+POST /reply
+{
+  "subject": "Server is down",
+  "body": "Our production server crashed. All users affected."
+}
+```
+
+### Example Response
+```json
+{
+  "priority": "CRITICAL",
+  "replies": "We have received your report and treated this as a critical incident..."
+}
+```
+
+---
+
+## How the Hybrid System Works
+
+```
+Email Input
+    ↓
+Rule Based System    → checks for priority keywords
+    ↓
+Confident? → use rule result
+Not sure?  → pass to ML Model
+    ↓
+ML Model             → Logistic Regression on TF-IDF features
+    ↓
+Final Priority + Confidence Score
+    ↓
+Groq LLM             → generates smart reply based on priority
+```
+
+---
+
+## Model Performance
+
+| Class | Precision | Recall | F1 Score |
+|---|---|---|---|
+| CRITICAL | 1.00 | 0.98 | 0.99 |
+| HIGH | 0.98 | 1.00 | 0.99 |
+| LOW | 1.00 | 1.00 | 1.00 |
+| MEDIUM | 1.00 | 1.00 | 1.00 |
+| **Overall** | **1.00** | **0.99** | **0.99** |
+
+Trained on 200 emails — 50 per priority class.
+
+---
