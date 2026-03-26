@@ -44,12 +44,33 @@ def save_model(model, vectorizer, encoder, path="model/"):
     print("✅ Model saved to model/ folder")
 
 
-def load_model(path="model/"):
-    """Load saved model from disk"""
+def load_model():
+    path = "model"
 
-    model      = pickle.load(open(os.path.join(path, "model.pkl"), "rb"))
+    model_path = os.path.join(path, "model.pkl")
+
+    if not os.path.exists(model_path):
+        print("⚠️ Model not found. Training new model...")
+
+        from data.data_loader import load_data, prepare_data, get_features_and_labels
+        from data.text_processor import preprocess_all, vectorize
+
+        df = load_data("data/emails.csv")
+        df, encoder = prepare_data(df)
+        X_raw, y = get_features_and_labels(df)
+        X_cleaned = preprocess_all(X_raw)
+        X_vectorized, vectorizer = vectorize(X_cleaned)
+
+        model = train_model(X_vectorized, y)
+        save_model(model, vectorizer, encoder)
+
+        return model, vectorizer, encoder
+
+    # if exists → load normally
+    import pickle
+
+    model = pickle.load(open(os.path.join(path, "model.pkl"), "rb"))
     vectorizer = pickle.load(open(os.path.join(path, "vectorizer.pkl"), "rb"))
-    encoder    = pickle.load(open(os.path.join(path, "encoder.pkl"), "rb"))
+    encoder = pickle.load(open(os.path.join(path, "encoder.pkl"), "rb"))
 
-    print("✅ Model loaded successfully")
     return model, vectorizer, encoder
