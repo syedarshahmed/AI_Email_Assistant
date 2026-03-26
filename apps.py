@@ -1,6 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from model.classifier import load_model
+
+model, vectorizer, encoder = load_model()
 
 # Import your existing functions
 from model.hybrid import hybrid_predict
@@ -27,28 +30,26 @@ class EmailRequest(BaseModel):
 # Root endpoint (test)
 @app.get("/")
 def home():
-    return {"message": "AI Email Assistant API is running 🚀"}
+    return {"message": "AI Email Assistant API is running"}
 
 
 # Priority endpoint
 @app.post("/priority")
 def get_priority(email: EmailRequest):
-    result = hybrid_predict(email.subject, email.body)
+    priority = hybrid_predict(email.subject, email.body, model, vectorizer, encoder)
     return {
-        "priority": result["final_priority"],
-        "confidence": float(result["final_confidence"])
-    }
+    "priority": priority
+        }
 
 
 # Reply endpoint
 @app.post("/reply")
 def get_reply(email: EmailRequest):
-    priority_result = hybrid_predict(email.subject, email.body)
-    priority = priority_result["final_priority"]
+    priority = hybrid_predict(email.subject, email.body, model, vectorizer, encoder)
 
-    replies = generate_reply(email.subject, email.body, priority)
+    reply = generate_reply(email.subject, email.body, priority)
 
     return {
-        "priority": priority,
-        "replies": replies
+    "priority": priority,
+    "reply": reply   # IMPORTANT: singular
     }

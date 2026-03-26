@@ -4,6 +4,7 @@ async function analyzeEmail() {
     const resultDiv = document.getElementById("result");
     const button    = document.getElementById("analyzeBtn");
     const btnText   = document.getElementById("btnText");
+    const API_URL = "https://ai-email-assistant-4ms9.onrender.com/reply";
 
     document.getElementById("subject").style.border = "";
     document.getElementById("body").style.border    = "";
@@ -24,7 +25,7 @@ async function analyzeEmail() {
     btnText.textContent = "Processing...";
 
     try {
-        const response = await fetch("http://127.0.0.1:8000/reply", {
+        const response = await fetch(`${API_URL}/reply`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ subject, body })
