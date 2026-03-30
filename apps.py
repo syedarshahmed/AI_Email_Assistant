@@ -55,6 +55,14 @@ class DraftRequest(BaseModel):
 def home():
     return {"message": "AI Email Assistant API is running"}
 
+@app.get("/debug/env")
+def debug_env():
+    return {
+        "client_id":     CLIENT_ID[:10] + "..." if CLIENT_ID else "MISSING",
+        "client_secret": CLIENT_SECRET[:5] + "..." if CLIENT_SECRET else "MISSING",
+        "redirect_uri":  REDIRECT_URI or "MISSING"
+    }
+
 
 @app.post("/priority")
 def get_priority(email: EmailRequest):
@@ -198,3 +206,5 @@ def create_draft(req: DraftRequest):
         "priority": priority,
         "reply":    reply,
     }
+
+
