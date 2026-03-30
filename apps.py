@@ -81,30 +81,28 @@ def get_reply(email: EmailRequest):
 # ── OAuth endpoints ──────────────────────────────────────────────
 @app.get("/auth/login")
 def auth_login():
-    """
-    Step 1 — redirect the user to Google's consent screen.
-    Frontend calls:  window.location.href = BACKEND + '/auth/login'
-    """
-    flow = Flow.from_client_config(
-        {
-            "web": {
-                "client_id":     CLIENT_ID,
-                "client_secret": CLIENT_SECRET,
-                "redirect_uris": [REDIRECT_URI],
-                "auth_uri":      "https://accounts.google.com/o/oauth2/auth",
-                "token_uri":     "https://oauth2.googleapis.com/token",
-            }
-        },
-        scopes=SCOPES,
-        redirect_uri=REDIRECT_URI,
-    )
-    auth_url, state = flow.authorization_url(
-        access_type="offline",   # get refresh token
-        prompt="consent",
-    )
-    # Store state to validate callback (simple in-memory; use session/DB in prod)
-    token_store["oauth_state"] = state
-    return RedirectResponse(auth_url)
+    try:
+        flow = Flow.from_client_config(
+            {
+                "web": {
+                    "client_id":     CLIENT_ID,
+                    "client_secret": CLIENT_SECRET,
+                    "redirect_uris": [REDIRECT_URI],
+                    "auth_uri":      "https://accounts.google.com/o/oauth2/auth",
+                    "token_uri":     "https://oauth2.googleapis.com/token",
+                }
+            },
+            scopes=SCOPES,
+            redirect_uri=REDIRECT_URI,
+        )
+        auth_url, state = flow.authorization_url(
+            access_type="offline",
+            prompt="consent",
+        )
+        token_store["oauth_state"] = state
+        return RedirectResponse(auth_url)
+    except Exception as e:
+        return JSONResponse({"error": str(e)}, status_code=500)
 
 
 @app.get("/auth/callback")
