@@ -754,3 +754,133 @@ input:focus, textarea:focus {
   outline-offset: 3px;
   border-radius: 4px;
 }
+
+/* ===========================
+   GMAIL CONNECT BUTTON
+=========================== */
+.gmail-connect-btn {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--surface2); border: 1px solid var(--border2);
+  color: var(--text2); padding: 7px 16px; border-radius: 40px;
+  font-family: 'DM Mono', monospace; font-size: 0.7rem;
+  cursor: pointer; transition: all 0.25s var(--ease-spring);
+  letter-spacing: 0.5px;
+}
+.gmail-connect-btn:hover {
+  border-color: rgba(108,99,255,0.4);
+  color: var(--accent3);
+  background: rgba(108,99,255,0.08);
+  transform: scale(1.04);
+}
+.gmail-connect-btn.connected {
+  background: var(--low-bg); border-color: var(--low-border);
+  color: var(--low);
+}
+
+/* ===========================
+   SAVE AS DRAFT BUTTON
+=========================== */
+.draft-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; padding: 11px;
+  background: transparent;
+  border: 1px solid rgba(108,99,255,0.35);
+  border-radius: var(--radius-sm);
+  color: var(--accent3);
+  font-family: 'Syne', sans-serif; font-size: 0.85rem; font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s var(--ease-spring);
+  margin-top: 8px;
+  letter-spacing: 0.3px;
+}
+.draft-btn:hover {
+  background: rgba(108,99,255,0.08);
+  border-color: rgba(108,99,255,0.6);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(108,99,255,0.15);
+}
+.draft-btn:active { transform: translateY(0); }
+
+/* ===========================
+   MODAL
+=========================== */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(7, 8, 13, 0.85);
+  backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s var(--ease-out);
+}
+.modal-overlay.active {
+  opacity: 1; pointer-events: all;
+}
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border2);
+  border-radius: var(--radius);
+  padding: 28px;
+  width: 100%; max-width: 480px;
+  display: flex; flex-direction: column; gap: 20px;
+  box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+  transform: translateY(16px) scale(0.97);
+  transition: transform 0.3s var(--ease-spring);
+}
+.modal-overlay.active .modal {
+  transform: translateY(0) scale(1);
+}
+.modal-header {
+  display: flex; align-items: center; justify-content: space-between;
+}
+.modal-close {
+  background: none; border: none; color: var(--text3);
+  font-size: 0.85rem; cursor: pointer;
+  transition: color 0.2s; padding: 4px;
+}
+.modal-close:hover { color: var(--critical); }
+.modal-body { display: flex; flex-direction: column; gap: 14px; }
+.modal-field { display: flex; flex-direction: column; gap: 6px; }
+.modal-field label {
+  font-family: 'DM Mono', monospace; font-size: 0.68rem;
+  color: var(--text3); letter-spacing: 1.5px; text-transform: uppercase;
+}
+.modal-field input {
+  background: var(--surface2); border: 1px solid var(--border);
+  color: var(--text); border-radius: var(--radius-xs);
+  padding: 10px 14px; font-family: 'Lora', serif; font-size: 0.85rem;
+  outline: none; transition: border-color 0.2s;
+}
+.modal-field input:focus { border-color: rgba(108,99,255,0.5); }
+.modal-value {
+  font-family: 'DM Mono', monospace; font-size: 0.78rem;
+  color: var(--text2); padding: 8px 0;
+}
+.modal-preview {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius-xs); padding: 14px;
+  font-family: 'Lora', serif; font-size: 0.82rem;
+  color: var(--text); line-height: 1.7; white-space: pre-wrap;
+  max-height: 160px; overflow-y: auto;
+}
+.modal-footer {
+  display: flex; gap: 10px; justify-content: flex-end;
+}
+.modal-cancel-btn {
+  padding: 10px 20px; border-radius: var(--radius-xs);
+  background: none; border: 1px solid var(--border2);
+  color: var(--text2); font-family: 'DM Mono', monospace;
+  font-size: 0.75rem; cursor: pointer;
+  transition: all 0.2s;
+}
+.modal-cancel-btn:hover { border-color: var(--critical-border); color: var(--critical); }
+.modal-send-btn {
+  padding: 10px 22px; border-radius: var(--radius-xs);
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  border: none; color: white;
+  font-family: 'Syne', sans-serif; font-size: 0.82rem; font-weight: 700;
+  cursor: pointer; transition: all 0.25s var(--ease-spring);
+  box-shadow: 0 4px 16px rgba(108,99,255,0.3);
+}
+.modal-send-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(108,99,255,0.45); }
+.modal-send-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }

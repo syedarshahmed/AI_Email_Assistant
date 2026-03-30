@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MailMind — AI Email Intelligence</title>
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@400;500&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
- 
+
   <!-- Ambient background layers -->
   <div class="bg-layer bg-grid"></div>
   <div class="bg-layer bg-orb bg-orb-1"></div>
   <div class="bg-layer bg-orb bg-orb-2"></div>
   <div class="bg-layer bg-orb bg-orb-3"></div>
   <div class="bg-layer noise-overlay"></div>
- 
+
   <div class="container">
- 
+
     <!-- Header -->
     <header class="header">
       <div class="logo">
         <div class="logo-mark">
           <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-            <path d="M10 2L12.5 7.5L18 8.5L14 12.5L15 18L10 15.5L5 18L6 12.5L2 8.5L7.5 7.5L10 2Z" fill="white" opacity="0.9"/>
+            <path d="M10 2L12.5 7.5L18 8.5L14 12.5L15 18L10 15.5L5 18L6 12.5L2 8.5L7.5 7.5L10 2Z" fill="white"
+              opacity="0.9" />
           </svg>
           <div class="logo-mark-ring"></div>
         </div>
@@ -37,12 +42,15 @@
           <span class="status-dot"></span>
           <span>AI Online</span>
         </div>
+        <button class="gmail-connect-btn" id="gmailBtn" onclick="handleGmailConnect()">
+          <span id="gmailBtnText">Connect Gmail</span>
+        </button>
       </div>
     </header>
- 
+
     <!-- Main Grid -->
     <div class="main-grid">
- 
+
       <!-- Compose Panel -->
       <section class="panel compose-panel" data-panel="compose">
         <div class="panel-header">
@@ -67,14 +75,14 @@
           <span class="btn-glow"></span>
           <span class="btn-star">
             <svg width="14" height="14" viewBox="0 0 20 20" fill="none">
-              <path d="M10 2L12.5 7.5L18 8.5L14 12.5L15 18L10 15.5L5 18L6 12.5L2 8.5L7.5 7.5L10 2Z" fill="white"/>
+              <path d="M10 2L12.5 7.5L18 8.5L14 12.5L15 18L10 15.5L5 18L6 12.5L2 8.5L7.5 7.5L10 2Z" fill="white" />
             </svg>
           </span>
           <span id="btnText">Analyze Email</span>
           <span class="btn-arrow">→</span>
         </button>
       </section>
- 
+
       <!-- Analysis Panel -->
       <section class="panel result-panel" data-panel="analysis">
         <div class="panel-header">
@@ -85,7 +93,8 @@
           <div class="empty-state">
             <div class="empty-icon-wrap">
               <svg class="empty-star" width="40" height="40" viewBox="0 0 20 20" fill="none">
-                <path d="M10 2L12.5 7.5L18 8.5L14 12.5L15 18L10 15.5L5 18L6 12.5L2 8.5L7.5 7.5L10 2Z" stroke="currentColor" stroke-width="1" fill="none"/>
+                <path d="M10 2L12.5 7.5L18 8.5L14 12.5L15 18L10 15.5L5 18L6 12.5L2 8.5L7.5 7.5L10 2Z"
+                  stroke="currentColor" stroke-width="1" fill="none" />
               </svg>
             </div>
             <p class="empty-title">Your analysis will appear here</p>
@@ -93,9 +102,9 @@
           </div>
         </div>
       </section>
- 
+
     </div>
- 
+
     <!-- History Section -->
     <section class="history-section">
       <div class="history-header">
@@ -106,10 +115,39 @@
       </div>
       <div id="history" class="history-grid"></div>
     </section>
- 
+
   </div>
- 
+  <!-- Draft Confirmation Modal -->
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal">
+      <div class="modal-header">
+        <span class="panel-label">// confirm draft</span>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-field">
+          <label>To</label>
+          <input type="email" id="modalTo" placeholder="recipient@gmail.com" />
+        </div>
+        <div class="modal-field">
+          <label>Subject</label>
+          <div class="modal-value" id="modalSubject"></div>
+        </div>
+        <div class="modal-field">
+          <label>Reply Preview</label>
+          <div class="modal-preview" id="modalPreview"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="modal-cancel-btn" onclick="closeModal()">Cancel</button>
+        <button class="modal-send-btn" id="modalSendBtn" onclick="submitDraft()">
+          <span id="modalSendText">Save Draft to Gmail</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <script src="script.js"></script>
 </body>
+
 </html>
- 

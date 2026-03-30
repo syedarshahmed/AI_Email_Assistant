@@ -1,3 +1,8 @@
+const API_URL = "https://ai-email-assistant-4ms9.onrender.com";
+let currentReply = "";
+let currentSubject = "";
+let gmailConnected = false;
+
 /* ===========================
    RIPPLE EFFECT ON BUTTON
 =========================== */
@@ -13,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   loadHistory();
+  checkGmailStatus();
 });
 
 
@@ -76,6 +82,8 @@ async function analyzeEmail() {
 
     // Small delay to feel snappier
     await delay(200);
+    currentReply = reply;
+    currentSubject = subject;
     renderResult(data.priority, reply);
 
   } catch (error) {
@@ -118,6 +126,7 @@ function renderResult(priority, reply) {
           ${reply}
         </div>
         <p class="copy-status" id="copyStatus"></p>
+        <button class="draft-btn" onclick="openDraftModal()">✦ Save as Draft in Gmail</button>
       </div>
     </div>`;
 }
@@ -284,3 +293,84 @@ shakeStyle.textContent = `
   }
 `;
 document.head.appendChild(shakeStyle);
+
+
+
+/* ===========================
+   GMAIL CONNECT
+=========================== */
+async function handleGmailConnect() {
+  if (gmailConnected) return;
+  window.location.href = `${API_URL}/auth/login`;
+}
+
+async function checkGmailStatus() {
+  try {
+    const res = await fetch(`${API_URL}/auth/status`);
+    const data = await res.json();
+    gmailConnected = data.connected;
+    const btn = document.getElementById("gmailBtn");
+    const txt = document.getElementById("gmailBtnText");
+    if (gmailConnected) {
+      btn.classList.add("connected");
+      txt.textContent = "✓ Gmail Connected";
+    }
+  } catch (e) { console.error("Status check failed", e); }
+}
+
+/* ===========================
+   DRAFT MODAL
+=========================== */
+function openDraftModal() {
+  if (!gmailConnected) {
+    alert("Please connect your Gmail account first.");
+    return;
+  }
+  document.getElementById("modalSubject").textContent = `Re: ${currentSubject}`;
+  document.getElementById("modalPreview").textContent = currentReply;
+  document.getElementById("modalTo").value = "";
+  document.getElementById("modalOverlay").classList.add("active");
+}
+
+function closeModal() {
+  document.getElementById("modalOverlay").classList.remove("active");
+}
+
+async function submitDraft() {
+  const to = document.getElementById("modalTo").value.trim();
+  if (!to) {
+    document.getElementById("modalTo").style.borderColor = "var(--critical)";
+    return;
+  }
+
+  const sendBtn = document.getElementById("modalSendBtn");
+  const sendText = document.getElementById("modalSendText");
+  sendBtn.disabled = true;
+  sendText.textContent = "Saving...";
+
+  try {
+    const res = await fetch(`${API_URL}/draft`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ subject: currentSubject, body: document.getElementById("body").value, to })
+    });
+    const data = await res.json();
+    if (data.success) {
+      closeModal();
+      const status = document.getElementById("copyStatus");
+      if (status) {
+        status.textContent = "✓ Draft saved to Gmail!";
+        setTimeout(() => { status.textContent = ""; }, 3000);
+      }
+    }
+  } catch (e) {
+    sendText.textContent = "Failed — try again";
+  }
+
+  sendBtn.disabled = false;
+  sendText.textContent = "Save Draft to Gmail";
+}
+
+
+
+
