@@ -56,14 +56,6 @@ class DraftRequest(BaseModel):
 def home():
     return {"message": "AI Email Assistant API is running"}
 
-@app.get("/debug/env")
-def debug_env():
-    return {
-        "client_id":     CLIENT_ID[:10] + "..." if CLIENT_ID else "MISSING",
-        "client_secret": CLIENT_SECRET[:5] + "..." if CLIENT_SECRET else "MISSING",
-        "redirect_uri":  REDIRECT_URI or "MISSING"
-    }
-
 
 @app.post("/priority")
 def get_priority(email: EmailRequest):
@@ -105,42 +97,37 @@ def auth_login():
 
 @app.get("/auth/callback")
 def auth_callback(request: Request):
-    code  = request.query_params.get("code")
+    code = request.query_params.get("code")
     if not code:
         raise HTTPException(status_code=400, detail="Missing authorization code")
 
-    try:
-        flow = Flow.from_client_config(
-            {
-                "web": {
-                    "client_id":     CLIENT_ID,
-                    "client_secret": CLIENT_SECRET,
-                    "redirect_uris": [REDIRECT_URI],
-                    "auth_uri":      "https://accounts.google.com/o/oauth2/auth",
-                    "token_uri":     "https://oauth2.googleapis.com/token",
-                }
-            },
-            scopes=SCOPES,
-            redirect_uri=REDIRECT_URI,
-        )
-        flow.code_verifier = ""
-        flow.fetch_token(code=code)
-        creds = flow.credentials
+    flow = Flow.from_client_config(
+        {
+            "web": {
+                "client_id":     CLIENT_ID,
+                "client_secret": CLIENT_SECRET,
+                "redirect_uris": [REDIRECT_URI],
+                "auth_uri":      "https://accounts.google.com/o/oauth2/auth",
+                "token_uri":     "https://oauth2.googleapis.com/token",
+            }
+        },
+        scopes=SCOPES,
+        redirect_uri=REDIRECT_URI,
+    )
+    flow.code_verifier = ""
+    flow.fetch_token(code=code)
+    creds = flow.credentials
 
-        token_store["user"] = {
-            "token":         creds.token,
-            "refresh_token": creds.refresh_token,
-            "token_uri":     creds.token_uri,
-            "client_id":     creds.client_id,
-            "client_secret": creds.client_secret,
-            "scopes":        list(creds.scopes) if creds.scopes else SCOPES,
-        }
+    token_store["user"] = {
+        "token":         creds.token,
+        "refresh_token": creds.refresh_token,
+        "token_uri":     creds.token_uri,
+        "client_id":     creds.client_id,
+        "client_secret": creds.client_secret,
+        "scopes":        list(creds.scopes) if creds.scopes else SCOPES,
+    }
 
-        return JSONResponse({"message": "Gmail connected successfully ✅"})
-
-    except Exception as e:
-        import traceback
-        return JSONResponse({"error": str(e), "trace": traceback.format_exc()}, status_code=500)
+    return JSONResponse({"message": "Gmail connected successfully ✅"})
 
 @app.get("/auth/status")
 def auth_status():
