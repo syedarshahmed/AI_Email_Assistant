@@ -95,13 +95,15 @@ def auth_login():
             scopes=SCOPES,
             redirect_uri=REDIRECT_URI,
         )
+        flow.code_verifier = None  # Disable PKCE for server-side flow
         auth_url, state = flow.authorization_url(
             access_type="offline",
             prompt="consent",
+            code_challenge_method=None,
         )
         token_store["oauth_state"] = state
         # Return URL instead of redirecting
-        return JSONResponse({"auth_url": auth_url})
+        return RedirectResponse(auth_url)
     except Exception as e:
         import traceback
         return JSONResponse({"error": str(e), "trace": traceback.format_exc()}, status_code=500)
@@ -133,6 +135,7 @@ def auth_callback(request: Request):
         redirect_uri=REDIRECT_URI,
         state=state,
     )
+    flow.code_verifier = None
     flow.fetch_token(code=code)
     creds = flow.credentials
 
