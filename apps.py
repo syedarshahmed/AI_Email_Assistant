@@ -79,7 +79,68 @@ def get_reply(email: EmailRequest):
 
 
 # ── OAuth endpoints ──────────────────────────────────────────
+@app.get("/auth/login")
+def auth_login():
+    flow = Flow.from_client_config(
+        {
+            "web": {
+                "client_id":     CLIENT_ID,
+                "client_secret": CLIENT_SECRET,
+                "redirect_uris": [REDIRECT_URI],
+                "auth_uri":      "https://accounts.google.com/o/oauth2/auth",
+                "token_uri":     "https://oauth2.googleapis.com/token",
+            }
+        },
+        scopes=SCOPES,
+        redirect_uri=REDIRECT_URI,
+    )
+    flow.code_verifier = ""
+    auth_url, state = flow.authorization_url(
+        access_type="offline",
+        prompt="consent",
+    )
+    token_store["oauth_state"] = state
+    return RedirectResponse(auth_url)
 
+
+@app.get("/auth/callback")
+def auth_callback(request: Request):
+    code  = request.query_params.get("code")
+    if not code:
+        raise HTTPException(status_code=400, detail="Missing authorization code")
+
+    try:
+        flow = Flow.from_client_config(
+            {
+                "web": {
+                    "client_id":     CLIENT_ID,
+                    "client_secret": CLIENT_SECRET,
+                    "redirect_uris": [REDIRECT_URI],
+                    "auth_uri":      "https://accounts.google.com/o/oauth2/auth",
+                    "token_uri":     "https://oauth2.googleapis.com/token",
+                }
+            },
+            scopes=SCOPES,
+            redirect_uri=REDIRECT_URI,
+        )
+        flow.code_verifier = ""
+        flow.fetch_token(code=code)
+        creds = flow.credentials
+
+        token_store["user"] = {
+            "token":         creds.token,
+            "refresh_token": creds.refresh_token,
+            "token_uri":     creds.token_uri,
+            "client_id":     creds.client_id,
+            "client_secret": creds.client_secret,
+            "scopes":        list(creds.scopes) if creds.scopes else SCOPES,
+        }
+
+        return JSONResponse({"message": "Gmail connected successfully ✅"})
+
+    except Exception as e:
+        import traceback
+        return JSONResponse({"error": str(e), "trace": traceback.format_exc()}, status_code=500)
 
 
 @app.get("/auth/status")
