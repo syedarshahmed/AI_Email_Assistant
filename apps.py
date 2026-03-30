@@ -99,7 +99,6 @@ def auth_login():
         auth_url, state = flow.authorization_url(
             access_type="offline",
             prompt="consent",
-            code_challenge_method=None,
         )
         token_store["oauth_state"] = state
         # Return URL instead of redirecting
