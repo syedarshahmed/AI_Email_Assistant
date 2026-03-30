@@ -78,7 +78,7 @@ def get_reply(email: EmailRequest):
     return {"priority": priority, "reply": reply}
 
 
-# ── OAuth endpoints ──────────────────────────────────────────────
+# ── OAuth endpoints ──────────────────────────────────────────
 @app.get("/auth/login")
 def auth_login():
     try:
@@ -100,9 +100,11 @@ def auth_login():
             prompt="consent",
         )
         token_store["oauth_state"] = state
-        return RedirectResponse(auth_url)
+        # Return URL instead of redirecting
+        return JSONResponse({"auth_url": auth_url})
     except Exception as e:
-        return JSONResponse({"error": str(e)}, status_code=500)
+        import traceback
+        return JSONResponse({"error": str(e), "trace": traceback.format_exc()}, status_code=500)
 
 
 @app.get("/auth/callback")
