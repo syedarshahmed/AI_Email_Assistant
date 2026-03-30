@@ -142,7 +142,6 @@ def auth_callback(request: Request):
         import traceback
         return JSONResponse({"error": str(e), "trace": traceback.format_exc()}, status_code=500)
 
-
 @app.get("/auth/status")
 def auth_status():
     """Check whether the user has already connected Gmail."""
