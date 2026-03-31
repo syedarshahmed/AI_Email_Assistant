@@ -127,7 +127,8 @@ def auth_callback(request: Request):
         "scopes":        list(creds.scopes) if creds.scopes else SCOPES,
     }
 
-    return JSONResponse({"message": "Gmail connected successfully ✅"})
+    FRONTEND_URL = os.getenv("FRONTEND_URL", "https://your-vercel-url.vercel.app")
+    return RedirectResponse(f"{FRONTEND_URL}?gmail=connected")
 
 @app.get("/auth/status")
 def auth_status():

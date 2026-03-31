@@ -305,17 +305,37 @@ async function handleGmailConnect() {
 }
 
 async function checkGmailStatus() {
+  // Check if redirected back from OAuth
+  const params = new URLSearchParams(window.location.search);
+  if (params.get("gmail") === "connected") {
+    gmailConnected = true;
+    updateGmailButton(true);
+    window.history.replaceState({}, document.title, window.location.pathname);
+    return;
+  }
+
+  // Otherwise check backend
   try {
     const res = await fetch(`${API_URL}/auth/status`);
     const data = await res.json();
     gmailConnected = data.connected;
-    const btn = document.getElementById("gmailBtn");
-    const txt = document.getElementById("gmailBtnText");
-    if (gmailConnected) {
-      btn.classList.add("connected");
-      txt.textContent = "✓ Gmail Connected";
-    }
-  } catch (e) { console.error("Status check failed", e); }
+    updateGmailButton(gmailConnected);
+  } catch (e) {
+    console.error("Status check failed", e);
+  }
+}
+
+function updateGmailButton(connected) {
+  const btn = document.getElementById("gmailBtn");
+  const txt = document.getElementById("gmailBtnText");
+  if (!btn || !txt) return;
+  if (connected) {
+    btn.classList.add("connected");
+    txt.textContent = "✓ Gmail Connected";
+  } else {
+    btn.classList.remove("connected");
+    txt.textContent = "Connect Gmail";
+  }
 }
 
 /* ===========================
