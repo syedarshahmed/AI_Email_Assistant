@@ -188,6 +188,6 @@ def create_draft(req: DraftRequest):
 
     except Exception as e:
         import traceback
-        return JSONResponse({"success": False, "error": str(e), "trace": traceback.format_exc()}, status_code=500)
+        return JSONResponse({"success": False, "error": str(e)}, status_code=500)
 
 
