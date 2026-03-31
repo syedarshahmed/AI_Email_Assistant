@@ -157,6 +157,8 @@ def create_draft(req: DraftRequest):
         # 2. Classify + generate reply
         priority = hybrid_predict(req.subject, req.body, model, vectorizer, encoder)
         reply    = generate_reply(req.subject, req.body, priority)
+        if isinstance(reply, list):
+            reply = " ".join(reply)
 
         # 3. Build MIME message
         mime_msg              = MIMEText(reply)
