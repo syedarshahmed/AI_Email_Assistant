@@ -147,46 +147,45 @@ def create_draft(req: DraftRequest):
       3. Inject reply as a Gmail draft via Gmail API
     Returns the draft ID so the frontend can confirm success.
     """
-    # 1. Check auth
-    if "user" not in token_store:
-        raise HTTPException(
+    try:  # 1. Check auth
+        if "user" not in token_store:
+         raise HTTPException(
             status_code=401,
             detail="Gmail not connected. Please visit /auth/login first."
         )
 
-    # 2. Classify + generate reply
-    priority = hybrid_predict(req.subject, req.body, model, vectorizer, encoder)
-    reply    = generate_reply(req.subject, req.body, priority)
+        # 2. Classify + generate reply
+        priority = hybrid_predict(req.subject, req.body, model, vectorizer, encoder)
+        reply    = generate_reply(req.subject, req.body, priority)
 
-    # 3. Build MIME message
-    mime_msg              = MIMEText(reply)
-    mime_msg["to"]        = req.to
-    mime_msg["subject"]   = f"Re: {req.subject}"
-    raw_message           = base64.urlsafe_b64encode(mime_msg.as_bytes()).decode()
+        # 3. Build MIME message
+        mime_msg              = MIMEText(reply)
+        mime_msg["to"]        = req.to
+        mime_msg["subject"]   = f"Re: {req.subject}"
+        raw_message           = base64.urlsafe_b64encode(mime_msg.as_bytes()).decode()
 
-    # 4. Rebuild credentials from store
-    data  = token_store["user"]
-    creds = Credentials(
-        token         = data["token"],
-        refresh_token = data["refresh_token"],
-        token_uri     = data["token_uri"],
-        client_id     = data["client_id"],
-        client_secret = data["client_secret"],
-        scopes        = data["scopes"],
-    )
+        # 4. Rebuild credentials from store
+        data  = token_store["user"]
+        creds = Credentials(
+            token         = data["token"],
+            refresh_token = data["refresh_token"],
+            token_uri     = data["token_uri"],
+            client_id     = data["client_id"],
+            client_secret = data["client_secret"],
+            scopes        = SCOPES,
+        )
 
-    # 5. Call Gmail API → create draft
-    service  = build("gmail", "v1", credentials=creds)
-    draft    = service.users().drafts().create(
-        userId  = "me",
-        body    = {"message": {"raw": raw_message}},
-    ).execute()
+        # 5. Call Gmail API → create draft
+        service  = build("gmail", "v1", credentials=creds)
+        draft    = service.users().drafts().create(
+            userId  = "me",
+            body    = {"message": {"raw": raw_message}},
+        ).execute()
 
-    return {
-        "success":  True,
-        "draft_id": draft.get("id"),
-        "priority": priority,
-        "reply":    reply,
-    }
+        return JSONResponse({"success": True, "draft_id": draft.get("id"), "priority": priority, "reply": reply})
+
+    except Exception as e:
+        import traceback
+        return JSONResponse({"success": False, "error": str(e), "trace": traceback.format_exc()}, status_code=500)
 
 
