@@ -1,10 +1,11 @@
 from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import RedirectResponse, JSONResponse
+from fastapi.responses import RedirectResponse, JSONResponse, HTMLResponse
 from pydantic import BaseModel
 from model.classifier import load_model
 from model.hybrid import hybrid_predict
 from model.reply_generator import generate_reply
+
 
 import os
 import base64
@@ -55,6 +56,46 @@ class DraftRequest(BaseModel):
 @app.get("/")
 def home():
     return {"message": "AI Email Assistant API is running"}
+
+
+@app.get("/privacy", response_class=HTMLResponse)
+def privacy_policy():
+    return """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MailMind — Privacy Policy</title>
+  <style>
+    body { font-family: sans-serif; max-width: 800px; margin: 60px auto; padding: 0 24px; line-height: 1.7; color: #333; }
+    h1 { font-size: 2rem; margin-bottom: 8px; }
+    h2 { margin-top: 32px; color: #444; }
+    p, li { color: #555; }
+  </style>
+</head>
+<body>
+  <h1>MailMind Privacy Policy</h1>
+  <p>Last updated: March 2026</p>
+  <h2>What We Access</h2>
+  <p>MailMind requests the <strong>gmail.compose</strong> scope only — to create email drafts on your behalf. We cannot read, delete, modify, or send your emails.</p>
+  <h2>What We Store</h2>
+  <p>We temporarily store your OAuth access token in server memory to facilitate draft creation. It is never written to a database or shared with anyone.</p>
+  <h2>What We Never Do</h2>
+  <ul>
+    <li>Never read your emails</li>
+    <li>Never send emails on your behalf</li>
+    <li>Never store your email content</li>
+    <li>Never sell or share your data</li>
+  </ul>
+  <h2>Third Party Services</h2>
+  <p>MailMind uses the Groq API to generate reply suggestions. Only the email subject and body you manually paste are sent to Groq. Your Gmail data is never shared.</p>
+  <h2>Revoking Access</h2>
+  <p>You can revoke MailMind's Gmail access anytime at <a href="https://myaccount.google.com/permissions">Google Account Permissions</a>.</p>
+  <h2>Contact</h2>
+  <p>For privacy concerns: syedarsh7860@gmail.com</p>
+</body>
+</html>
+"""
 
 
 @app.post("/priority")
@@ -190,45 +231,7 @@ def create_draft(req: DraftRequest):
         import traceback
         return JSONResponse({"success": False, "error": str(e)}, status_code=500)
 
-from fastapi.responses import HTMLResponse
 
-@app.get("/privacy", response_class=HTMLResponse)
-def privacy_policy():
-    return """
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>MailMind — Privacy Policy</title>
-  <style>
-    body { font-family: sans-serif; max-width: 800px; margin: 60px auto; padding: 0 24px; line-height: 1.7; color: #333; }
-    h1 { font-size: 2rem; margin-bottom: 8px; }
-    h2 { margin-top: 32px; color: #444; }
-    p, li { color: #555; }
-  </style>
-</head>
-<body>
-  <h1>MailMind Privacy Policy</h1>
-  <p>Last updated: March 2026</p>
-  <h2>What We Access</h2>
-  <p>MailMind requests the <strong>gmail.compose</strong> scope only — to create email drafts on your behalf. We cannot read, delete, modify, or send your emails.</p>
-  <h2>What We Store</h2>
-  <p>We temporarily store your OAuth access token in server memory to facilitate draft creation. It is never written to a database or shared with anyone.</p>
-  <h2>What We Never Do</h2>
-  <ul>
-    <li>Never read your emails</li>
-    <li>Never send emails on your behalf</li>
-    <li>Never store your email content</li>
-    <li>Never sell or share your data</li>
-  </ul>
-  <h2>Third Party Services</h2>
-  <p>MailMind uses the Groq API to generate reply suggestions. Only the email subject and body you manually paste are sent to Groq. Your Gmail data is never shared.</p>
-  <h2>Revoking Access</h2>
-  <p>You can revoke MailMind's Gmail access anytime at <a href="https://myaccount.google.com/permissions">Google Account Permissions</a>.</p>
-  <h2>Contact</h2>
-  <p>For privacy concerns: syedarsh7860@gmail.com</p>
-</body>
-</html>
-"""
+
 
 
